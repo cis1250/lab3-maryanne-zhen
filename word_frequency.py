@@ -29,9 +29,40 @@ def is_sentence(text):
 
     return True
 
+# -- MAIN PROGRAM ---
+
+# Ask user to enter a sentence
 user_sentence = input("Enter a sentence: ")
 
+# Prompt user again if given input is not a sentene
 while (is_sentence(user_sentence) == False):
     print("This does not meet the criteria for a sentence.")
-    user_input = input("Enter a sentence: ")
-    
+    user_sentence = input("Enter a sentence: ")
+
+# Splitting the sentence
+sentence = (user_sentence.lower()).split()
+
+# Removing punctuation from the sentence
+for wd in sentence: # go through each item
+  for ch in wd: # go through each character in the sentence
+    if ch in '[,.!?]':
+      sentence[sentence.index(wd)] = wd.replace(ch, "")
+
+# Creating two empty lists for words and frequencies
+words = []
+frequencies = []
+
+# Counting words
+for wd in sentence: # go through all words in sentence
+  if wd in words:
+    # if word already exists in the list, add to counter
+    ind = words.index(wd)
+    frequencies[ind] += 1
+  else:
+    # if word does not exist in the list, add it to the list and start a counter
+    words.append(wd)
+    frequencies.append(1)
+
+# Print the results
+for i in range(len(words)):
+  print(f"{words[i]:10} : {frequencies[i]:5}")
