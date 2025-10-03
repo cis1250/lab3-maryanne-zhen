@@ -37,3 +37,4 @@ for i in range(num_terms):
   a, b = b, a+b
   # a = b (current term is now the next term)
   # b = a + b (next is now current(previous) + next(current))
+print()
